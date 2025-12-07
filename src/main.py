@@ -5,6 +5,7 @@ import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="perth")
 warnings.filterwarnings("ignore", category=FutureWarning, module="torch.nn.utils.weight_norm")
 warnings.filterwarnings("ignore", message=".*weights_only=False.*")
+warnings.filterwarnings("ignore", module="multiprocessing.resource_tracker")
 
 # Adjust logging levels for noisy loggers
 logging.getLogger("torchao.kernel.intmm").setLevel(logging.ERROR)
