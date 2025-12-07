@@ -1,4 +1,15 @@
 import logging
+import warnings
+
+# Filter warnings immediately
+warnings.filterwarnings("ignore", category=UserWarning, module="perth")
+warnings.filterwarnings("ignore", category=FutureWarning, module="torch.nn.utils.weight_norm")
+warnings.filterwarnings("ignore", message=".*weights_only=False.*")
+
+# Adjust logging levels for noisy loggers
+logging.getLogger("torchao.kernel.intmm").setLevel(logging.ERROR)
+logging.getLogger("phonemizer").setLevel(logging.ERROR)
+
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from src.routes import speech
