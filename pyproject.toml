@@ -1,0 +1,44 @@
+[project]
+name = "speech-api"
+version = "0.1.0"
+description = "Speech API for Mini PC"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.124.0",
+    "pydantic>=2.12.5",
+    "pydantic-settings>=2.12.0",
+    "uvicorn[standard]>=0.38.0",
+    "faster-whisper>=1.1.0",
+    "soundfile>=0.13.1",
+    "python-multipart>=0.0.9",
+    "llama-cpp-python>=0.3.16",
+    # Neutts Air dependencies
+    "neucodec>=0.0.4",
+    "phonemizer>=3.3.0",
+    "librosa>=0.11.0",
+    "resemble-perth>=1.0.1",
+    # Torch via CPU index (Pinned to stable 2.5.1)
+    "torch==2.5.1",
+    "torchaudio==2.5.1",
+    "torchvision==0.20.1",
+    "transformers==4.56.1",
+    "torchao==0.12.0",
+]
+
+[project.scripts]
+speech-api = "speech_api:main"
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+torchvision = { index = "pytorch-cpu" }
+torchaudio = { index = "pytorch-cpu" }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
